@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import Countries from './components/countries/Countries';
+import CountryDetails from './components/CountryDetails/CountryDetails';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Errorpage from './components/Error/Errorpage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <Switch>
+          <Route exact path="/">
+            <Countries></Countries>
+          </Route>
+          <Route to path="/country/:countryName">
+            <CountryDetails></CountryDetails>
+          </Route>
+          <Route path="*">
+            <Errorpage></Errorpage>
+          </Route>
+        </Switch>
+      </Router>
+      
+      
     </div>
   );
 }
